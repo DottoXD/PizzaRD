@@ -19,7 +19,7 @@ PFN_HttpOpenRequest OpenRequestHttp = nullptr;
 PFN_InternetConnect InternetConnectHttp = nullptr;
 
 HINTERNET WINAPI FixedOpenRequestHttp(HINTERNET hConnect, LPCWSTR lpszVerb, LPCWSTR lpszObjectName, LPCWSTR lpszVersion, LPCWSTR lpszReferrer, LPCWSTR lpszAcceptTypes[], DWORD dwFlags, DWORD_PTR dwContext) {
-    return OpenRequestHttp(hConnect, lpszVerb, lpszObjectName, lpszVersion, lpszReferrer, *lpszAcceptTypes, (HTTPS ? INTERNET_FLAG_DONT_CACHE : INTERNET_FLAG_DONT_CACHE), dwContext);
+    return OpenRequestHttp(hConnect, lpszVerb, lpszObjectName, lpszVersion, lpszReferrer, *lpszAcceptTypes, (HTTPS ? INTERNET_FLAG_SECURE | INTERNET_FLAG_DONT_CACHE : INTERNET_FLAG_DONT_CACHE), dwContext);
 }
 
 HINTERNET WINAPI FixedInternetConnectHttp(HINTERNET hInternet, LPCWSTR lpszServerName, INTERNET_PORT nServerPort, LPCWSTR lpszUserName, LPCWSTR lpszPassword, DWORD dwService, DWORD dwFlags, DWORD_PTR dwContext) {
